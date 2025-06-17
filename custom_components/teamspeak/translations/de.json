@@ -1,0 +1,33 @@
+{
+    "config": {
+        "title": "Teamspeak-Server",
+        "step": {
+            "user": {
+                "title": "Teamspeak-Server",
+                "description": "Richte deine Teamspeak-3-Serverinstanz ein, um Überwachung und Steuerung zu ermöglichen. Falls du Hilfe bei der Konfiguration benötigst, schaue hier nach: https://github.com/Larsiiii/teamspeak-homeassistant-integration",
+                "data": {
+                    "host": "Host",
+                    "username": "Benutzername",
+                    "password": "Passwort"
+                }
+            }
+        },
+        "error": {
+            "auth": "Verbindung zur Teamspeak-3-Serverinstanz konnte nicht hergestellt werden. Möglicherweise sind Benutzername/Passwort falsch oder der Server ist nicht aktiv."
+        },
+        "abort": {
+            "single_instance_allowed": "Nur eine einzelne Konfiguration der TS3 Komponente ist erlaubt."
+        }
+    },
+    "options": {
+        "step": {
+            "user": {
+                "data": {
+                    "binary_sensor": "Binärsensor aktiviert",
+                    "sensor": "Sensor aktiviert",
+                    "switch": "Schalter aktiviert"
+                }
+            }
+        }
+    }
+}
