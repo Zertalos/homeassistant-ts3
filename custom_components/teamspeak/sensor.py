@@ -21,17 +21,20 @@ async def async_setup_entry(hass, entry, async_add_devices):
     coordinator = hass.data[DOMAIN][entry.entry_id]
     async_add_devices(
         [
-            TeamspeakSensor(coordinator=coordinator, entry=entry, icon=ICON_SERVER),
+            TeamspeakSensor(
+                coordinator=coordinator,
+                config_entry=entry,
+                icon=ICON_SERVER),
             TeamspeakClientsOnlineSensor(
                 coordinator=coordinator,
-                entry=entry,
+                config_entry=entry,
                 name="Active Users",
                 filter_func=lambda client: client.get("client_type") == "0",
                 icon=ICON_HUMAN_USER,
             ),
             TeamspeakClientsOnlineSensor(
                 coordinator=coordinator,
-                entry=entry,
+                config_entry=entry,
                 name="Active Connections",
                 filter_func=lambda client: True,
                 icon=ICON_ALL_CONNECTIONS,
