@@ -22,22 +22,25 @@ async def async_setup_entry(hass, entry, async_add_devices):
     async_add_devices(
         [
             TeamspeakSensor(
-                coordinator=coordinator,
-                config_entry=entry,
+                coordinator,
+                entry,
+                unique_id_suffix=None,
                 icon=ICON_SERVER),
             TeamspeakClientsOnlineSensor(
-                coordinator=coordinator,
-                config_entry=entry,
+                coordinator,
+                entry,
                 name="Active Users",
                 filter_func=lambda client: client.get("client_type") == "0",
-                icon=ICON_HUMAN_USER
+                icon=ICON_HUMAN_USER,
+                unique_id_suffix="1"
             ),
             TeamspeakClientsOnlineSensor(
-                coordinator=coordinator,
-                config_entry=entry,
+                coordinator,
+                entry,
                 name="Active Connections",
                 filter_func=lambda client: True,
-                icon=ICON_ALL_CONNECTIONS
+                icon=ICON_ALL_CONNECTIONS,
+                unique_id_suffix="2"
             ),
         ]
     )
@@ -111,11 +114,10 @@ class TeamspeakClientsOnlineSensor(TeamspeakEntity):
     :param filter_func: A callable that accepts a client dict and returns True if it should be counted.
     """
 
-    def __init__(self, coordinator, entry, name, filter_func, icon=ICON_SERVER):
-        super().__init__(coordinator, entry)
+    def __init__(self, coordinator, entry, name, filter_func,unique_id_suffix="",  icon=ICON_SERVER):
+        super().__init__(coordinator, entry,unique_id_suffix, icon)
         self._name = name
         self._filter_func = filter_func
-        self._icon = icon
 
     @property
     def name(self):
@@ -156,3 +158,12 @@ class TeamspeakClientsOnlineSensor(TeamspeakEntity):
         :return: str
         """
         return self._icon
+    
+    @property
+    def extra_state_attributes(self):
+        """
+        Get additional state attributes for the sensor.
+
+        :return: dict of all coordinator data.
+        """
+        return {"users": [username for username in self.coordinator.data.get("clients", []) if self._filter_func(username)]}
