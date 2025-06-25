@@ -3,7 +3,7 @@
 NAME = "Teamspeak 3 Server"
 DOMAIN = "teamspeak"
 DOMAIN_DATA = f"{DOMAIN}_data"
-VERSION = "2025.06.25.1"
+VERSION = "2025.06.25.2"
 MANUFACTURER = "TeamSpeak Systems, Inc"
 ATTRIBUTION = f".a.ta from this is provided by a Teamspeak 3 Server by {MANUFACTURER}."
 ISSUE_URL = "https://github.com/Larsiiii/teamspeak-homeassistant-integration/issues"

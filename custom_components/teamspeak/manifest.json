@@ -4,7 +4,7 @@
   "documentation": "https://github.com/Zertalos/homeassistant-ts3",
   "issue_tracker": "https://github.com/Zertalos/homeassistant-ts3/issues",
   "dependencies": [],
-  "version": "2025.06.17.1",
+  "version": "2025.06.25.2",
   "iot_class": "cloud_polling",
   "config_flow": true,
   "codeowners": [

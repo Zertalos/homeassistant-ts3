@@ -12,6 +12,8 @@ _DISCLAIMER: This project is a private open source project and doesn't have any 
 Platform | Description
 -- | --
 `sensor` | Shows info from the configured Teamspeak 3 Server.
+`sensor` | Displays Amout of connected (real) users
+`sensor` | Displays amount of total connections (real users and RCON connections)
 
 
 The following information can be found under Attributes
