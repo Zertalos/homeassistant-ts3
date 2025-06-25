@@ -1,6 +1,13 @@
 """Sensor platform for Teamspeak 3 Server."""
 
-from .const import DEFAULT_NAME, DOMAIN, ICON_SERVER, ICON_HUMAN_USER, ICON_ALL_CONNECTIONS, SENSOR
+from .const import (
+    DEFAULT_NAME,
+    DOMAIN,
+    ICON_SERVER,
+    ICON_HUMAN_USER,
+    ICON_ALL_CONNECTIONS,
+    SENSOR,
+)
 from .entity import TeamspeakEntity
 
 
@@ -14,23 +21,20 @@ async def async_setup_entry(hass, entry, async_add_devices):
     coordinator = hass.data[DOMAIN][entry.entry_id]
     async_add_devices(
         [
-            TeamspeakSensor(
-                coordinator=coordinator,
-                entry=entry,
-                icon=ICON_SERVER),
+            TeamspeakSensor(coordinator=coordinator, entry=entry, icon=ICON_SERVER),
             TeamspeakClientsOnlineSensor(
                 coordinator=coordinator,
                 entry=entry,
                 name="Active Users",
-                filter_func=lambda client: client.get('client_type') == '0',
-                icon=ICON_HUMAN_USER
+                filter_func=lambda client: client.get("client_type") == "0",
+                icon=ICON_HUMAN_USER,
             ),
             TeamspeakClientsOnlineSensor(
                 coordinator=coordinator,
                 entry=entry,
                 name="Active Connections",
                 filter_func=lambda client: True,
-                icon=ICON_ALL_CONNECTIONS
+                icon=ICON_ALL_CONNECTIONS,
             ),
         ]
     )
@@ -43,7 +47,7 @@ class TeamspeakSensor(TeamspeakEntity):
     Displays the server's name and status (online/offline), as well as
     any extra state attributes returned by the coordinator.
     """
-    
+
     @property
     def name(self):
         """
@@ -94,7 +98,6 @@ class TeamspeakSensor(TeamspeakEntity):
         return self.coordinator.data
 
 
-
 class TeamspeakClientsOnlineSensor(TeamspeakEntity):
     """
     Sensor representing the number of clients online based on a custom filter.
@@ -104,6 +107,7 @@ class TeamspeakClientsOnlineSensor(TeamspeakEntity):
     :param name: Name of the sensor shown in Home Assistant.
     :param filter_func: A callable that accepts a client dict and returns True if it should be counted.
     """
+
     def __init__(self, coordinator, entry, name, filter_func, icon=ICON_SERVER):
         super().__init__(coordinator, entry)
         self._name = name
@@ -130,13 +134,13 @@ class TeamspeakClientsOnlineSensor(TeamspeakEntity):
 
         :return: int or None if no serverinfo
         """
-        serverinfo = self.coordinator.data.get('serverinfo')
+        serverinfo = self.coordinator.data.get("serverinfo")
         if not serverinfo:
             return None
         return len(
             [
                 client
-                for client in self.coordinator.data.get('clients', [])
+                for client in self.coordinator.data.get("clients", [])
                 if self._filter_func(client)
             ]
         )
@@ -149,4 +153,3 @@ class TeamspeakClientsOnlineSensor(TeamspeakEntity):
         :return: str
         """
         return self._icon
-

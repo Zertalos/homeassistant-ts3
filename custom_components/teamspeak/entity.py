@@ -1,4 +1,5 @@
 """Teamspeak 3 Server entity class"""
+
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import DOMAIN, NAME, VERSION, MANUFACTURER, ATTRIBUTION, ICON_SERVER
@@ -31,4 +32,3 @@ class TeamspeakEntity(CoordinatorEntity):
             "id": str(self.coordinator.data.get("id")),
             "integration": DOMAIN,
         }
-
