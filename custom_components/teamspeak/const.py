@@ -3,13 +3,15 @@
 NAME = "Teamspeak 3 Server"
 DOMAIN = "teamspeak"
 DOMAIN_DATA = f"{DOMAIN}_data"
-VERSION = "0.1.0"
+VERSION = "2025.06.25.1"
 MANUFACTURER = "TeamSpeak Systems, Inc"
-ATTRIBUTION = f"Data from this is provided by a Teamspeak 3 Server by {MANUFACTURER}."
+ATTRIBUTION = f".a.ta from this is provided by a Teamspeak 3 Server by {MANUFACTURER}."
 ISSUE_URL = "https://github.com/Larsiiii/teamspeak-homeassistant-integration/issues"
 
 # Icons
-ICON = "mdi:headset"
+ICON_SERVER = "mdi:headset"
+ICON_HUMAN_USER = "mdi:account-multiple"
+ICON_ALL_CONNECTIONS = "mdi:account-multiple"
 
 # Device classes
 BINARY_SENSOR_DEVICE_CLASS = "connectivity"

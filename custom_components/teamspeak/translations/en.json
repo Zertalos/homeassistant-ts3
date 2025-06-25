@@ -29,5 +29,17 @@
                 }
             }
         }
+    },
+    "title": "Teamspeak 3",
+    "sensor": {
+      "human_clients_online": {
+        "name": "Human Clients Online"
+      },
+      "all_clients_online": {
+        "name": "All Connections Online"
+      }
+    },
+    "state": {
+        "no_connection": "No Connection to Server"
     }
 }
