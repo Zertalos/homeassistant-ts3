@@ -30,14 +30,14 @@ async def async_setup_entry(hass, entry, async_add_devices):
                 config_entry=entry,
                 name="Active Users",
                 filter_func=lambda client: client.get("client_type") == "0",
-                icon=ICON_HUMAN_USER,
+                icon=ICON_HUMAN_USER
             ),
             TeamspeakClientsOnlineSensor(
                 coordinator=coordinator,
                 config_entry=entry,
                 name="Active Connections",
                 filter_func=lambda client: True,
-                icon=ICON_ALL_CONNECTIONS,
+                icon=ICON_ALL_CONNECTIONS
             ),
         ]
     )
